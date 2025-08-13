@@ -1,8 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 // import Navbar from './components/Navbar';
+import NotFound from './pages/NotFound';
+import Homepage from './pages/Homepage';
 import Login from './pages/Login';
 import Register from './pages/Register';
-import Homepage from './pages/Homepage';
 import Profile from './pages/Profile';
 import Tasks from './pages/Tasks';
 
@@ -11,6 +12,7 @@ function App() {
     <Router>
       {/* <Navbar /> */}
       <Routes>
+        <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Homepage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
