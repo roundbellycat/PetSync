@@ -6,11 +6,36 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosConfig';
 
 const Register = () => {
-  const [formData, setFormData] = useState({ fname: '', lname: '', uname: '', email: '', password: '' });
+  const [formData, setFormData] = useState({
+    fname: '',
+    lname: '',
+    uname: '',
+    email: '',
+    password: ''
+  });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // attempting to add validation
+    if (!formData.fname || !formData.lname || !formData.uname) {
+      alert('Please fill in all name and username fields.');
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('Please enter a valid email.');
+      return;
+    }
+
+    // CHANGE THIS LENGTH IF IT WORKS LATER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if (formData.password.length < 4) {
+      alert('Password must be at least 4 characters.');
+      return;
+    }
+
     try {
       await axiosInstance.post('/api/auth/register', formData);
       alert('Registration successful. Please log in.');
