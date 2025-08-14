@@ -18,23 +18,24 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // attempting to add validation
-    if (!formData.fname || !formData.lname || !formData.uname) {
-      alert('Please fill in all name and username fields.');
-      return;
-    }
+    //   // attempting to add validation
+    //   if (!formData.fname || !formData.lname || !formData.uname) {
+    //     alert('Please fill in all name and username fields.');
+    //     return;
+    //   }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(formData.email)) {
-      alert('Please enter a valid email.');
-      return;
-    }
+    //   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    //   if (!emailRegex.test(formData.email)) {
+    //     alert('Please enter a valid email.');
+    //     return;
+    //   }
 
-    // CHANGE THIS LENGTH IF IT WORKS LATER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    if (formData.password.length < 4) {
-      alert('Password must be at least 4 characters.');
-      return;
-    }
+    //   // CHANGE THIS LENGTH IF IT WORKS LATER !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    //   if (formData.password.length < 4) {
+    //     alert('Password must be at least 4 characters.');
+    //     return;
+    //   }
+    //////////////////////////////////////////////
 
     try {
       await axiosInstance.post('/api/auth/register', formData);
@@ -62,7 +63,7 @@ const Register = () => {
 
           <input
             type="text"
-            placeholder="Last namne"
+            placeholder="Last name"
             value={formData.lname}
             onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
