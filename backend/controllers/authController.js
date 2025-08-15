@@ -8,17 +8,16 @@ const generateToken = (id) => {
 };
 
 const registerUser = async (req, res) => {
-    const { fname, lname, uname, email, password } = req.body;
+    const { fname, lname, email, password } = req.body;
     try {
         const userExists = await User.findOne({ email });
         if (userExists) return res.status(400).json({ message: 'User already exists' });
 
-        const user = await User.create({ fname, lname, uname, email, password });
+        const user = await User.create({ fname, lname, email, password });
         res.status(201).json({
             id: user.id,
             fname: user.fname,
             lname: user.lname,
-            uname: user.uname,
             email: user.email,
             token: generateToken(user.id)
         });
@@ -36,7 +35,6 @@ const loginUser = async (req, res) => {
                 id: user.id,
                 fname: user.fname,
                 lname: user.lname,
-                uname: user.uname,
                 email: user.email,
                 token: generateToken(user.id)
             });
@@ -54,16 +52,9 @@ const getProfile = async (req, res) => {
         if (!user) {
             return res.status(404).json({ message: 'User not found' });
         }
-
         res.status(200).json({
-            name: user.name,
-            email: user.email,
-            university: user.university,
-            address: user.address,
-=======
             fname: user.fname,
             lname: user.lname,
-            uname: user.uname,
             email: user.email,
         });
     } catch (error) {
@@ -76,19 +67,16 @@ const updateUserProfile = async (req, res) => {
         const user = await User.findById(req.user.id);
         if (!user) return res.status(404).json({ message: 'User not found' });
 
-        const { fname, lname, uname, email } = req.body;
+        const { fname, lname, email } = req.body;
         user.fname = fname || user.fname;
         user.lname = lname || user.lname;
-        user.uname = uname || user.uname;
         user.email = email || user.email;
-
 
         const updatedUser = await user.save();
         res.json({
             id: updatedUser.id,
             fname: updatedUser.fname,
             lname: updatedUser.lname,
-            uname: updatedUser.uname,
             email: updatedUser.email,
             token: generateToken(updatedUser.id)
         });
