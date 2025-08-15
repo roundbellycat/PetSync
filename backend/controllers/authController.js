@@ -56,6 +56,11 @@ const getProfile = async (req, res) => {
         }
 
         res.status(200).json({
+            name: user.name,
+            email: user.email,
+            university: user.university,
+            address: user.address,
+=======
             fname: user.fname,
             lname: user.lname,
             uname: user.uname,
