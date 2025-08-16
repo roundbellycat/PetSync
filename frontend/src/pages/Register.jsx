@@ -5,7 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosConfig';
 
 const Register = () => {
-  const [formData, setFormData] = useState({ fname: '', lname: '', uname: '', email: '', password: '' });
+  const [formData, setFormData] = useState({
+    fname: '',
+    lname: '',
+    uname: '',
+    email: '',
+    password: '',
+    confirmPass: '',
+  });
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -21,14 +28,22 @@ const Register = () => {
       return alert("Invalid email format")
     }
 
+    // validate passsword
+    if (formData.password !== formData.confirmPass) {
+      return alert("Passwords do not match")
+    }
+
     try {
-      await axiosInstance.post('/api/auth/register', formData);
+      // remove confirmpass before sending, so there is non duplicate
+      const { confirmPass, ...dataToSend } = formData;
+
+      await axiosInstance.post('/api/auth/register', dataToSend);
       alert('Registration successful. Please log in.');
       navigate('/login');
+
     } catch (error) {
       // show backend errors
       alert(error.response?.data?.message || 'Registration failed. Please try again.')
-      // alert('Registration failed. Please try again.');
     }
   };
 
@@ -75,6 +90,14 @@ const Register = () => {
             placeholder="Password"
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+            className="w-full mb-4 p-2 border rounded"
+          />
+
+          <input
+            type="password"
+            placeholder="Confirm Password"
+            value={formData.confirmPass}
+            onChange={(e) => setFormData({ ...formData, confirmPass: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
 
