@@ -8,41 +8,63 @@ const generateToken = (id) => {
 };
 
 const registerUser = async (req, res) => {
-    const { fname, lname, email, password } = req.body;
-    try {
-        const userExists = await User.findOne({ email });
-        if (userExists) return res.status(400).json({ message: 'User already exists' });
+    const { fname, lname, uname, email, password } = req.body;
 
-        const user = await User.create({ fname, lname, email, password });
+    // check if username is taken
+    try {
+        const userExists = await User.findOne({ uname });
+        if (userExists) {
+            return res.status(400).json({ message: 'Username is taken' });
+        }
+
+        // check if email is taken
+        const emailExists = await User.findOne({ email });
+        if (emailExists) {
+            return res.status(400).json({ message: 'Email is taken' })
+        }
+
+        // create user
+        const user = await User.create({ fname, lname, uname, email, password });
+
         res.status(201).json({
             id: user.id,
             fname: user.fname,
             lname: user.lname,
+            uname: user.uname,
             email: user.email,
             token: generateToken(user.id)
         });
+
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Register error:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
 const loginUser = async (req, res) => {
-    const { email, password } = req.body;
+    const { uname, password } = req.body;
+
+    // checking username
     try {
-        const user = await User.findOne({ email });
-        if (user && (await bcrypt.compare(password, user.password))) {
-            res.json({
-                id: user.id,
-                fname: user.fname,
-                lname: user.lname,
-                email: user.email,
-                token: generateToken(user.id)
-            });
-        } else {
-            res.status(401).json({ message: 'Invalid email or password' });
-        }
+        const user = await User.findOne({ uname });
+        if (!user) return res.status(401).json({ message: 'Username not found' });
+
+        // checking password
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) return res.status(401).json({ message: 'Incorrect password' });
+
+        res.json({
+            id: user.id,
+            fname: user.fname,
+            lname: user.lname,
+            uname: user.uname,
+            email: user.email,
+            token: generateToken(user.id)
+        });
+
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Login error:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
@@ -55,6 +77,7 @@ const getProfile = async (req, res) => {
         res.status(200).json({
             fname: user.fname,
             lname: user.lname,
+            uname: user.uname,
             email: user.email,
         });
     } catch (error) {
@@ -67,9 +90,10 @@ const updateUserProfile = async (req, res) => {
         const user = await User.findById(req.user.id);
         if (!user) return res.status(404).json({ message: 'User not found' });
 
-        const { fname, lname, email } = req.body;
+        const { fname, lname, uname, email } = req.body;
         user.fname = fname || user.fname;
         user.lname = lname || user.lname;
+        user.uname = uname || user.uname;
         user.email = email || user.email;
 
         const updatedUser = await user.save();
@@ -77,6 +101,7 @@ const updateUserProfile = async (req, res) => {
             id: updatedUser.id,
             fname: updatedUser.fname,
             lname: updatedUser.lname,
+            uname: updatedUser.uname,
             email: updatedUser.email,
             token: generateToken(updatedUser.id)
         });

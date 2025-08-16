@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import axiosInstance from '../axiosConfig';
 
 const Login = () => {
-  const [formData, setFormData] = useState({ email: '', password: '' });
+  const [formData, setFormData] = useState({ uname: '', password: '' });
   const { login } = useAuth();
   const navigate = useNavigate();
 
@@ -17,7 +17,8 @@ const Login = () => {
       login(response.data);
       navigate('/');
     } catch (error) {
-      alert('Login failed. Please try again.');
+      // show backend error message
+      alert(error.response?.data?.message || 'Login failed. Please try again.');
     }
   };
 
@@ -28,12 +29,13 @@ const Login = () => {
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
           <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+            type="text"
+            placeholder="Username"
+            value={formData.uname}
+            onChange={(e) => setFormData({ ...formData, uname: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
+
           <input
             type="password"
             placeholder="Password"
@@ -41,6 +43,7 @@ const Login = () => {
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
+
           <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
             Login
           </button>
