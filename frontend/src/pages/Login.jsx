@@ -34,6 +34,7 @@ const Login = () => {
             onChange={(e) => setFormData({ ...formData, umail: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
+
           <input
             type="password"
             placeholder="Password"
@@ -41,6 +42,7 @@ const Login = () => {
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
+
           <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
             Login
           </button>
