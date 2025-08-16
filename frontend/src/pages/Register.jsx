@@ -10,12 +10,25 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // checking for spaces in username
+    if (/\s/.test(formData.uname)) {
+      return alert("Username cannot contain spaces")
+    }
+
+    // checking email format
+    if (!/\S@\S+\.\S+/.test(formData.email)) {
+      return alert("Invalid email format")
+    }
+
     try {
       await axiosInstance.post('/api/auth/register', formData);
       alert('Registration successful. Please log in.');
       navigate('/login');
     } catch (error) {
-      alert('Registration failed. Please try again.');
+      // show backend errors
+      alert(error.response?.data?.message || 'Registration failed. Please try again.')
+      // alert('Registration failed. Please try again.');
     }
   };
 

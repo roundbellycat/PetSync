@@ -9,11 +9,23 @@ const generateToken = (id) => {
 
 const registerUser = async (req, res) => {
     const { fname, lname, uname, email, password } = req.body;
+
+    // check if username is taken
     try {
         const userExists = await User.findOne({ uname });
-        if (userExists) return res.status(400).json({ message: 'User already exists' });
+        if (userExists) {
+            return res.status(400).json({ message: 'Username is taken' });
+        }
 
+        // check if email is taken
+        const emailExists = await User.findOne({ email });
+        if (emailExists) {
+            return res.status(400).json({ message: 'Email is taken' })
+        }
+
+        // create user
         const user = await User.create({ fname, lname, uname, email, password });
+
         res.status(201).json({
             id: user.id,
             fname: user.fname,
@@ -22,8 +34,10 @@ const registerUser = async (req, res) => {
             email: user.email,
             token: generateToken(user.id)
         });
+
     } catch (error) {
-        res.status(500).json({ message: error.message });
+        console.error('Register error:', error);
+        res.status(500).json({ message: 'Server error', error: error.message });
     }
 };
 
