@@ -64,6 +64,7 @@ const Profile = () => {
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Your Profile</h1>
 
+          <label className="block mb-1 font-medium">First name</label>
           <input
             type="text"
             placeholder="First name"
@@ -72,6 +73,7 @@ const Profile = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Last name</label>
           <input
             type="text"
             placeholder="Last name"
@@ -80,6 +82,7 @@ const Profile = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Username</label>
           <input
             type="text"
             placeholder="Username"
@@ -88,6 +91,7 @@ const Profile = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Email</label>
           <input
             type="email"
             placeholder="Email"
