@@ -64,23 +64,30 @@ const Profile = () => {
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Your Profile</h1>
 
-          <label className="block mb-1 font-medium">First name</label>
-          <input
-            type="text"
-            placeholder="First name"
-            value={formData.fname}
-            onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
+          {/* first and last name row*/}
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">First name</label>
+              <input
+                type="text"
+                placeholder="First name"
+                value={formData.fname}
+                onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
 
-          <label className="block mb-1 font-medium">Last name</label>
-          <input
-            type="text"
-            placeholder="Last name"
-            value={formData.lname}
-            onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">Last name</label>
+              <input
+                type="text"
+                placeholder="Last name"
+                value={formData.lname}
+                onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
+          </div >
 
           <label className="block mb-1 font-medium">Username</label>
           <input
@@ -103,8 +110,8 @@ const Profile = () => {
           <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
             {loading ? 'Updating...' : 'Update Profile'}
           </button>
-        </form>
-      </div>
+        </form >
+      </div >
     </>
   );
 };
