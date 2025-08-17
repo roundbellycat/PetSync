@@ -1,5 +1,7 @@
 // this is the page that the create task and lists will appear
 
+import Navbar from '../components/Navbar';
+
 import { useState, useEffect } from 'react';
 import axiosInstance from '../axiosConfig';
 import TaskForm from '../components/TaskForm';
@@ -27,15 +29,29 @@ const Tasks = () => {
   }, [user]);
 
   return (
-    <div className="container mx-auto p-6">
-      <TaskForm
-        tasks={tasks}
-        setTasks={setTasks}
-        editingTask={editingTask}
-        setEditingTask={setEditingTask}
-      />
-      <TaskList tasks={tasks} setTasks={setTasks} setEditingTask={setEditingTask} />
-    </div>
+    <>
+      <Navbar />
+      {/* <div className="container mx-auto p-6"> */}
+      <div className="flex gap-6">
+        <div className="w-1/3">
+          <TaskForm
+            tasks={tasks}
+            setTasks={setTasks}
+            editingTask={editingTask}
+            setEditingTask={setEditingTask}
+          />
+        </div>
+
+        <div className="w-2/3">
+          <TaskList
+            tasks={tasks}
+            setTasks={setTasks}
+            setEditingTask={setEditingTask}
+          />
+        </div >
+      </div >
+      {/* </div> */}
+    </>
   );
 };
 
