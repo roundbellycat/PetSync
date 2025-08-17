@@ -50,7 +50,7 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-md mx-auto mt-20">
+      <div className="max-w-md mx-auto mt-10">
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
 
