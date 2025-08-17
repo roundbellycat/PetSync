@@ -50,25 +50,36 @@ const Register = () => {
   return (
     <>
       <Navbar />
-      <div className="max-w-md mx-auto mt-20">
+      <div className="max-w-md mx-auto mt-10">
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
-          <input
-            type="text"
-            placeholder="First name"
-            value={formData.fname}
-            onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
 
-          <input
-            type="text"
-            placeholder="Last name"
-            value={formData.lname}
-            onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
+          {/* first and last name row*/}
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">First name</label>
+              <input
+                type="text"
+                placeholder="First name"
+                value={formData.fname}
+                onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
 
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">Last name</label>
+              <input
+                type="text"
+                placeholder="Last name"
+                value={formData.lname}
+                onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
+          </div>
+
+          <label className="block mb-1 font-medium">Username</label>
           <input
             type="text"
             placeholder="Username"
@@ -77,6 +88,7 @@ const Register = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Email</label>
           <input
             type="email"
             placeholder="Email"
@@ -85,27 +97,36 @@ const Register = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
-          <input
-            type="password"
-            placeholder="Password"
-            value={formData.password}
-            onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
+          {/* password and confirm password row*/}
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">Password</label>
+              <input
+                type="password"
+                placeholder="Password"
+                value={formData.password}
+                onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
 
-          <input
-            type="password"
-            placeholder="Confirm Password"
-            value={formData.confirmPass}
-            onChange={(e) => setFormData({ ...formData, confirmPass: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">Confirm password</label>
+              <input
+                type="password"
+                placeholder="Confirm Password"
+                value={formData.confirmPass}
+                onChange={(e) => setFormData({ ...formData, confirmPass: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
+          </div>
 
           <button type="submit" className="w-full bg-green-600 text-white p-2 rounded">
             Register
           </button>
-        </form>
-      </div>
+        </form >
+      </div >
     </>
   );
 };

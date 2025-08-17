@@ -28,6 +28,8 @@ const Login = () => {
       <div className="max-w-md mx-auto mt-20">
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Login</h1>
+
+          <label className="block mb-1 font-medium">Username</label>
           <input
             type="text"
             placeholder="Username"
@@ -36,6 +38,7 @@ const Login = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Password</label>
           <input
             type="password"
             placeholder="Password"
