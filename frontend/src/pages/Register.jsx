@@ -55,7 +55,7 @@ const Register = () => {
           <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
 
           {/* first and last name row*/}
-          <div className="flex gap-4 mb-4">
+          <div className="flex gap-4">
             <div className="flex-1">
               <label className="block mb-1 font-medium">First name</label>
               <input
@@ -63,7 +63,7 @@ const Register = () => {
                 placeholder="First name"
                 value={formData.fname}
                 onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
-                className="w-full p-2 border rounded"
+                className="w-full mb-4 p-2 border rounded"
               />
             </div>
 
@@ -74,7 +74,7 @@ const Register = () => {
                 placeholder="Last name"
                 value={formData.lname}
                 onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
-                className="w-full p-2 border rounded"
+                className="w-full mb-4 p-2 border rounded"
               />
             </div>
           </div>
@@ -98,7 +98,7 @@ const Register = () => {
           />
 
           {/* password and confirm password row*/}
-          <div className="flex gap-4 mb-4">
+          <div className="flex gap-4">
             <div className="flex-1">
               <label className="block mb-1 font-medium">Password</label>
               <input
@@ -106,7 +106,7 @@ const Register = () => {
                 placeholder="Password"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
-                className="w-full p-2 border rounded"
+                className="w-full mb-4 p-2 border rounded"
               />
             </div>
 
@@ -117,7 +117,7 @@ const Register = () => {
                 placeholder="Confirm Password"
                 value={formData.confirmPass}
                 onChange={(e) => setFormData({ ...formData, confirmPass: e.target.value })}
-                className="w-full p-2 border rounded"
+                className="w-full mb-4 p-2 border rounded"
               />
             </div>
           </div>
