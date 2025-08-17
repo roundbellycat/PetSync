@@ -9,6 +9,7 @@ const Profile = () => {
   const [formData, setFormData] = useState({
     fname: '',
     lname: '',
+    uname: '',
     email: '',
   });
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const Profile = () => {
         setFormData({
           fname: response.data.fname,
           lname: response.data.lname,
+          uname: response.data.uname,
           email: response.data.email,
         });
       } catch (error) {
@@ -61,22 +63,42 @@ const Profile = () => {
       <div className="max-w-md mx-auto mt-20">
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Your Profile</h1>
+
+          {/* first and last name row*/}
+          <div className="flex gap-4">
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">First name</label>
+              <input
+                type="text"
+                placeholder="First name"
+                value={formData.fname}
+                onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
+
+            <div className="flex-1">
+              <label className="block mb-1 font-medium">Last name</label>
+              <input
+                type="text"
+                placeholder="Last name"
+                value={formData.lname}
+                onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
+                className="w-full mb-4 p-2 border rounded"
+              />
+            </div>
+          </div >
+
+          <label className="block mb-1 font-medium">Username</label>
           <input
             type="text"
-            placeholder="First name"
-            value={formData.fname}
-            onChange={(e) => setFormData({ ...formData, fname: e.target.value })}
+            placeholder="Username"
+            value={formData.uname}
+            onChange={(e) => setFormData({ ...formData, uname: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
 
-          <input
-            type="text"
-            placeholder="Last name"
-            value={formData.lname}
-            onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
-            className="w-full mb-4 p-2 border rounded"
-          />
-
+          <label className="block mb-1 font-medium">Email</label>
           <input
             type="email"
             placeholder="Email"
@@ -88,8 +110,8 @@ const Profile = () => {
           <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
             {loading ? 'Updating...' : 'Update Profile'}
           </button>
-        </form>
-      </div>
+        </form >
+      </div >
     </>
   );
 };
