@@ -53,6 +53,8 @@ const Register = () => {
       <div className="max-w-md mx-auto mt-20">
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Register</h1>
+
+          <label className="block mb-1 font-medium">First name</label>
           <input
             type="text"
             placeholder="First name"
@@ -61,6 +63,7 @@ const Register = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Last name</label>
           <input
             type="text"
             placeholder="Last name"
@@ -69,6 +72,7 @@ const Register = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Username</label>
           <input
             type="text"
             placeholder="Username"
@@ -77,6 +81,7 @@ const Register = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Email</label>
           <input
             type="email"
             placeholder="Email"
@@ -85,6 +90,7 @@ const Register = () => {
             className="w-full mb-4 p-2 border rounded"
           />
 
+          <label className="block mb-1 font-medium">Password</label>
           <input
             type="password"
             placeholder="Password"
@@ -92,7 +98,7 @@ const Register = () => {
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
-
+          <label className="block mb-1 font-medium">Confirm password</label>
           <input
             type="password"
             placeholder="Confirm Password"
