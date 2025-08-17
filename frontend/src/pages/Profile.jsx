@@ -3,7 +3,6 @@ import Navbar from '../components/Navbar';
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import axiosInstance from '../axiosConfig';
-import { useRoutes } from 'react-router-dom';
 
 const Profile = () => {
   const { user } = useAuth(); // Access user token from context
@@ -14,8 +13,6 @@ const Profile = () => {
     email: '',
   });
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const [success, setSuccess] = useState('');
 
   useEffect(() => {
     // Fetch profile data from the backend
@@ -44,9 +41,6 @@ const Profile = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setError('');
-    setSuccess('');
-
     try {
       await axiosInstance.put('/api/auth/profile', formData, {
         headers: { Authorization: `Bearer ${user.token}` },
@@ -69,13 +63,6 @@ const Profile = () => {
       <div className="max-w-md mx-auto mt-20">
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Your Profile</h1>
-
-          {error && (
-            <div className="mb-4 p-2 bg-red-200 text-red-800 rounded">{error}</div>
-          )}
-          {success && (
-            < div className="mb-4 p-2 bg-green-200 text-green-800 rounded">{success}</div>
-          )}
 
           <input
             type="text"
@@ -112,8 +99,8 @@ const Profile = () => {
           <button type="submit" className="w-full bg-blue-600 text-white p-2 rounded">
             {loading ? 'Updating...' : 'Update Profile'}
           </button>
-        </form >
-      </div >
+        </form>
+      </div>
     </>
   );
 };
