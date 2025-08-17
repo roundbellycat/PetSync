@@ -29,7 +29,7 @@ const Navbar = () => {
           <>
             <Link to="/" className="mr-4">Home</Link>
             <Link to="/pets" className="mr-4">Pets</Link>
-            <Link to="/tasks" className="mr-4">Tasks</Link>
+            {/* <Link to="/tasks" className="mr-4">Tasks</Link> */}
             <Link to="/profile" className="mr-4">Profile</Link>
 
             <button

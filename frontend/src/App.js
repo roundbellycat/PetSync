@@ -5,7 +5,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Profile from './pages/Profile';
 import Pets from './pages/Pets';
-import Tasks from './pages/Tasks';
+// import Tasks from './pages/Tasks';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/pets" element={<Pets />} />
-        <Route path="/tasks" element={<Tasks />} />
+        {/* <Route path="/tasks" element={<Tasks />} /> */}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
