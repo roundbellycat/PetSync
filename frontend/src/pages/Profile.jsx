@@ -9,6 +9,7 @@ const Profile = () => {
   const [formData, setFormData] = useState({
     fname: '',
     lname: '',
+    uname: '',
     email: '',
   });
   const [loading, setLoading] = useState(false);
@@ -24,6 +25,7 @@ const Profile = () => {
         setFormData({
           fname: response.data.fname,
           lname: response.data.lname,
+          uname: response.data.uname,
           email: response.data.email,
         });
       } catch (error) {
@@ -45,7 +47,7 @@ const Profile = () => {
       });
       alert('Profile updated successfully!');
     } catch (error) {
-      alert('Failed to update profile. Please try again.');
+      alert(error.response?.data?.message || 'Failed to update profile. Please try again.');
     } finally {
       setLoading(false);
     }
@@ -61,6 +63,7 @@ const Profile = () => {
       <div className="max-w-md mx-auto mt-20">
         <form onSubmit={handleSubmit} className="bg-white p-6 shadow-md rounded">
           <h1 className="text-2xl font-bold mb-4 text-center">Your Profile</h1>
+
           <input
             type="text"
             placeholder="First name"
@@ -74,6 +77,14 @@ const Profile = () => {
             placeholder="Last name"
             value={formData.lname}
             onChange={(e) => setFormData({ ...formData, lname: e.target.value })}
+            className="w-full mb-4 p-2 border rounded"
+          />
+
+          <input
+            type="text"
+            placeholder="Username"
+            value={formData.uname}
+            onChange={(e) => setFormData({ ...formData, uname: e.target.value })}
             className="w-full mb-4 p-2 border rounded"
           />
 
