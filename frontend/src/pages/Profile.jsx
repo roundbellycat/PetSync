@@ -47,16 +47,7 @@ const Profile = () => {
       });
       alert('Profile updated successfully!');
     } catch (error) {
-      alert(error.response?.data?.message || 'Failed to update profile. Please try again.');
-      // Check for backend unique constraint error
-      const msg = error.response?.data?.message;
-      if (msg?.includes('uname')) {
-        alert('Username is already taken.');
-      } else if (msg?.includes('email')) {
-        alert('Email is already taken.');
-      } else {
-        alert('Failed to update profile. Please try again.');
-      }
+      alert('Failed to update profile. Please try again.');
     } finally {
       setLoading(false);
     }
