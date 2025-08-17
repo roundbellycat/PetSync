@@ -21,7 +21,7 @@ PetSync is a management system for veterinarian clinics, built with React.js, No
 - npm or yarn
 - MongoDB instance
 
-### Installation
+### Workflow
 - GitHub
 https://github.com/roundbellycat/PetSync
 - JIRA
